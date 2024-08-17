@@ -17,7 +17,7 @@ export default async function Home({
   return (
     <>
       <header className="w-screen sticky top-0 border-b border-default bg-background" >
-        <div className="container mx-auto text-xl p-2 px-4 flex items-center justify-between">
+        <div className="w-full max-w-lg mx-auto text-xl p-2 px-4 flex items-center justify-between">
           <div className="flex gap-4">
             <a target="_blank" href="https://github.com/kevinmarquesp" className="flex items-center gap-2">
               <MessageSquare />
@@ -31,7 +31,7 @@ export default async function Home({
         </div>
       </header>
       <main className="w-screen">
-        <div className="container mx-auto p-12">
+        <div className="w-full max-w-lg mx-auto p-12">
           {user && <div className="pb-10 border-b mb-10">
             <CommentForm />
           </div>}

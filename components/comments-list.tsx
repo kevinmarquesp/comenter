@@ -25,20 +25,21 @@ export default function CommentsList() {
 
     async function fetchAllData() {
       const userResult = (await supabase.auth.getUser()).data.user;
-      const commentsResult = await supabase.from("Comments").select()
+      const commentsResult = await supabase
+        .from("Comments")
+        .select()
+        .order("created_at", { ascending: false });
 
       setUser(userResult);
       setComments(commentsResult);
     }
   })
 
-  if (!user || !comments || !comments.data) {
+  if (!comments || !comments.data) {
     return (
       <></>
     );
   }
-
-  console.log(comments)
 
   return (
     <ul className="space-y-3">
