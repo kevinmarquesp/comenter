@@ -13,14 +13,10 @@ import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js"
 import { LogOut } from "react-feather";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 
 export default function GoogleAccountCard() {
-  const searchParams = useSearchParams()
   const supabase = createClient()
   const [user, setUser] = useState<User | null>(null)
-
-  console.log(searchParams.get("code"))
 
   useEffect(() => {
     if (user) {

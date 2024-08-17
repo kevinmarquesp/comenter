@@ -1,9 +1,13 @@
-"use client";
-
+import LogInWithGoogleButton from "@/components/login-with-google-button";
+import GoogleAccountCard from "@/components/google-account-card";
 import ThemeTogglerButton from "@/components/theme-toggler-button";
+import { createClient } from "@/utils/supabase/server";
 import { MessageSquare } from "react-feather";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createClient()
+  const user = (await supabase.auth.getUser()).data.user
+
   return (
     <>
       <header className="w-screen sticky top-0 border-b border-default">
@@ -17,6 +21,7 @@ export default function Home() {
             </a>
             <ThemeTogglerButton />
           </div>
+          {user ? <GoogleAccountCard /> : <LogInWithGoogleButton />}
         </div>
       </header>
     </>
