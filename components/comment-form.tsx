@@ -14,7 +14,6 @@ export default function CommentForm() {
       event.preventDefault()
 
       const form = new FormData(event.target as HTMLFormElement);
-      const user = (await supabase.auth.getUser()).data.user
 
       const fields = z.object({
         author: z
@@ -29,7 +28,6 @@ export default function CommentForm() {
       }).parse({
         author: form.get("author"),
         comment: form.get("comment"),
-        user_id: user?.id
       })
 
       console.log(fields)
