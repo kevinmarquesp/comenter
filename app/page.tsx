@@ -4,7 +4,11 @@ import ThemeTogglerButton from "@/components/theme-toggler-button";
 import { createClient } from "@/utils/supabase/server";
 import { MessageSquare } from "react-feather";
 
-export default async function Home() {
+export default async function Home({
+  searchParams
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined }
+}) {
   const supabase = createClient()
   const user = (await supabase.auth.getUser()).data.user
 
@@ -21,7 +25,7 @@ export default async function Home() {
             </a>
             <ThemeTogglerButton />
           </div>
-          {user ? <GoogleAccountCard /> : <LogInWithGoogleButton />}
+          {user ? <GoogleAccountCard /> : <LogInWithGoogleButton isLoading={searchParams?.code ? true : false} />}
         </div>
       </header>
     </>
